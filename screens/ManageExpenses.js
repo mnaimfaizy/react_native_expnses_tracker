@@ -1,7 +1,7 @@
-const { Text } = require("react-native");
+import { Text } from "react-native";
 
-function ManageExpenses() {
-  return <Text>Manage Expenses</Text>;
+function ManageExpense() {
+  return <Text>ManageExpense Screen</Text>;
 }
 
-export default ManageExpenses;
+export default ManageExpense;
