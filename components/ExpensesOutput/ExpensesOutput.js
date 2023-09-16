@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 import { GlobalStyles } from "../../constants/styles";
 import ExpensesList from "./ExpensesList";
@@ -10,6 +10,7 @@ function ExpensesOutput({ expenses, expensesPeriod, fallbackText }) {
   if (expenses.length > 0) {
     content = <ExpensesList expenses={expenses} />;
   }
+
   return (
     <View style={styles.container}>
       <ExpensesSummary expenses={expenses} periodName={expensesPeriod} />
