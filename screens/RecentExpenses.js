@@ -20,7 +20,12 @@ function RecentExpenses() {
         const expenses = await fetchExpenses();
         expensesCtx.setExpenses(expenses);
       } catch (error) {
-        setError("Could not fetch expenses!");
+        console.error("Failed to fetch expenses:", error);
+        setError(
+          __DEV__ && error?.message
+            ? error.message
+            : "Could not fetch expenses!"
+        );
       }
       setIsFetching(false);
     }

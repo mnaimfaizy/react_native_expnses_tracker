@@ -7,7 +7,7 @@ import IconButton from "../components/UI/IconButton";
 import LoadingOverlay from "../components/UI/LoadingOverlay";
 import { GlobalStyles } from "../constants/styles";
 import { ExpensesContext } from "../store/expenses-context";
-import { storeExpense, updateExpense, deleteExpense } from "../util/http";
+import { deleteExpense, storeExpense, updateExpense } from "../util/http";
 
 function ManageExpense({ route, navigation }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -35,7 +35,12 @@ function ManageExpense({ route, navigation }) {
       expensesCtx.deleteExpense(editedExpenseId);
       navigation.goBack();
     } catch (error) {
-      setError("Could not delete expense - please try again later!");
+      console.error("Failed to delete expense:", error);
+      setError(
+        __DEV__ && error?.message
+          ? error.message
+          : "Could not delete expense - please try again later!"
+      );
       setIsSubmitting(false);
     }
   }
@@ -56,7 +61,12 @@ function ManageExpense({ route, navigation }) {
       }
       navigation.goBack();
     } catch (error) {
-      setError("Could not save data - please try again later!");
+      console.error("Failed to store/update expense:", error);
+      setError(
+        __DEV__ && error?.message
+          ? error.message
+          : "Could not save data - please try again later!"
+      );
       setIsSubmitting(false);
     }
   }

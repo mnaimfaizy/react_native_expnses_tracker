@@ -1,41 +1,51 @@
-import axios from "axios";
+import { child, get, push, ref, remove, set, update } from "firebase/database";
 
-const BACKEND_URL =
-  "https://react-native-expenses-tr-f50ea-default-rtdb.firebaseio.com";
+import { firebaseDb } from "./firebase";
+
+function toDbExpense(expenseData) {
+  return {
+    amount: expenseData.amount,
+    date:
+      expenseData.date instanceof Date
+        ? expenseData.date.toISOString()
+        : expenseData.date,
+    description: expenseData.description,
+  };
+}
 
 export async function storeExpense(expenseData) {
-  const response = await axios.post(
-    BACKEND_URL + "/expenses.json",
-    expenseData
-  );
-  const id = response.data.name;
-  return id;
+  const newExpenseRef = push(ref(firebaseDb, "expenses"));
+  await set(newExpenseRef, toDbExpense(expenseData));
+  return newExpenseRef.key;
 }
 
 export async function fetchExpenses() {
-  const response = await axios.get(BACKEND_URL + "/expenses.json");
+  const dbRef = ref(firebaseDb);
+  const snapshot = await get(child(dbRef, "expenses"));
 
-  console.log(response);
+  if (!snapshot.exists()) {
+    return [];
+  }
 
+  const data = snapshot.val();
   const expenses = [];
 
-  for (const key in response.data) {
-    const expenseObj = {
+  for (const key in data) {
+    expenses.push({
       id: key,
-      amount: response.data[key].amount,
-      date: new Date(response.data[key].date),
-      description: response.data[key].description,
-    };
-    expenses.push(expenseObj);
+      amount: data[key].amount,
+      date: new Date(data[key].date),
+      description: data[key].description,
+    });
   }
 
   return expenses;
 }
 
 export function updateExpense(id, expenseData) {
-  return axios.put(BACKEND_URL + `/expenses/${id}.json`, expenseData);
+  return update(ref(firebaseDb, `expenses/${id}`), toDbExpense(expenseData));
 }
 
 export function deleteExpense(id) {
-  return axios.delete(BACKEND_URL + `/expenses/${id}.json`);
+  return remove(ref(firebaseDb, `expenses/${id}`));
 }
