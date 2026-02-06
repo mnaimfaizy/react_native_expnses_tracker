@@ -19,7 +19,7 @@ This project is a lightweight personal finance demo / learning project that show
   - **Recent**: shows expenses from the last 7 days
   - **All expenses**: shows the full list
 - **Add an expense**
-  - amount, date (YYYY-MM-DD), description
+  - amount, date (picked via native date picker; displayed as YYYY-MM-DD), description
   - input validation with inline error messaging
 - **Edit an expense**
   - tap an item in the list to open it in the edit modal
@@ -29,6 +29,12 @@ This project is a lightweight personal finance demo / learning project that show
 - **Network UX**
   - loading overlay while fetching/saving
   - error overlay when requests fail
+
+## Screenshots
+
+| Expenses | Add Expense | Edit Expense |
+| --- | --- | --- |
+| ![Expenses screen](screenshots/expenses-screen.png) | ![Add expense screen](screenshots/add-expense-screen.png) | ![Expense detail screen](screenshots/expense-detail-screen.png) |
 
 ## Screens & navigation
 
@@ -187,7 +193,7 @@ Notes:
 
 ## Notes / troubleshooting
 
-- **Date format**: the form expects `YYYY-MM-DD`.
+- **Date format**: selected via date picker; displayed as `YYYY-MM-DD`.
 - If you see “Could not fetch expenses!”, confirm your Firebase URL and rules.
 - If iOS/Android launch fails, ensure you have a simulator/emulator set up, or use Expo Go.
 - If Metro fails with `Unable to resolve "./postinstall.mjs"` (Firebase), this repo includes a `metro.config.js` that enables `.mjs`/`.cjs` resolution. Restart with `yarn start -c`.
