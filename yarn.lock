@@ -3132,6 +3132,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native-community/datetimepicker@npm:7.2.0":
+  version: 7.2.0
+  resolution: "@react-native-community/datetimepicker@npm:7.2.0"
+  dependencies:
+    invariant: "npm:^2.2.4"
+  checksum: 10c0/19579fe59dbdff7410b07034973a72fcac6c37214c5665c9665590017403ea33ba44e0c98780b4037169c22119ee1d81099d897fd1bd97d85fe9457f480f3f2b
+  languageName: node
+  linkType: hard
+
 "@react-native/assets-registry@npm:^0.72.0":
   version: 0.72.0
   resolution: "@react-native/assets-registry@npm:0.72.0"
@@ -8345,6 +8354,7 @@ __metadata:
   resolution: "react_native_expense_tracker_app@workspace:."
   dependencies:
     "@babel/core": "npm:^7.20.0"
+    "@react-native-community/datetimepicker": "npm:7.2.0"
     "@react-navigation/bottom-tabs": "npm:^6.5.8"
     "@react-navigation/native": "npm:^6.1.7"
     "@react-navigation/native-stack": "npm:^6.9.13"

@@ -1,12 +1,14 @@
-import { View, StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 import { GlobalStyles } from "../../constants/styles";
 
 function ErrorOverlay({ message }) {
   return (
     <View style={styles.container}>
-      <Text style={[styles.text, styles.title]}>An error occurred!</Text>
-      <Text style={styles.text}>{message}</Text>
+      <View style={styles.card}>
+        <Text style={[styles.text, styles.title]}>An error occurred!</Text>
+        <Text style={styles.text}>{message}</Text>
+      </View>
     </View>
   );
 }
@@ -19,10 +21,19 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 24,
-    backgroundColor: GlobalStyles.colors.primary700,
+    backgroundColor: GlobalStyles.colors.primary800,
+  },
+  card: {
+    width: "100%",
+    paddingVertical: 16,
+    paddingHorizontal: 14,
+    borderRadius: 12,
+    backgroundColor: GlobalStyles.colors.primary50,
+    borderWidth: 1,
+    borderColor: GlobalStyles.colors.primary200,
   },
   text: {
-    color: "white",
+    color: GlobalStyles.colors.primary800,
     textAlign: "center",
     marginBottom: 8,
   },

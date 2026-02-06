@@ -24,10 +24,10 @@ export default ExpensesOutput;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 24,
-    paddingTop: 24,
-    paddingBottom: 0,
-    backgroundColor: GlobalStyles.colors.primary700,
+    paddingHorizontal: 16,
+    paddingTop: 16,
+    paddingBottom: 16,
+    backgroundColor: GlobalStyles.colors.primary800,
   },
   infoText: {
     color: "white",

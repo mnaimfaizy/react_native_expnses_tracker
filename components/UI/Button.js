@@ -2,14 +2,17 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { GlobalStyles } from "../../constants/styles";
 
 function Button({ children, onPress, mode, style }) {
+  const isFlat = mode === "flat";
+
   return (
     <View style={style}>
       <Pressable
         onPress={onPress}
-        style={({ pressed }) => pressed && styles.pressed}
+        android_ripple={{ color: GlobalStyles.colors.primary100 }}
+        style={({ pressed }) => [styles.pressable, pressed && styles.pressed]}
       >
-        <View style={[styles.button, mode === "flat" && styles.flat]}>
-          <Text style={[styles.buttonText, mode === "flat" && styles.flatText]}>
+        <View style={[styles.button, isFlat && styles.flat]}>
+          <Text style={[styles.buttonText, isFlat && styles.flatText]}>
             {children}
           </Text>
         </View>
@@ -21,9 +24,14 @@ function Button({ children, onPress, mode, style }) {
 export default Button;
 
 const styles = StyleSheet.create({
+  pressable: {
+    borderRadius: 8,
+    overflow: "hidden",
+  },
   button: {
-    borderRadius: 4,
-    padding: 8,
+    borderRadius: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 14,
     backgroundColor: GlobalStyles.colors.primary500,
   },
   flat: {
@@ -32,13 +40,13 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "white",
     textAlign: "center",
+    fontSize: 16,
+    fontWeight: "600",
   },
   flatText: {
     color: GlobalStyles.colors.primary200,
   },
   pressed: {
-    opacity: 0.75,
-    backgroundColor: GlobalStyles.colors.primary100,
-    borderRadius: 4,
+    opacity: 0.85,
   },
 });

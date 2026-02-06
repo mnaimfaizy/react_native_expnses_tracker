@@ -12,6 +12,8 @@ function ExpensesList({ expenses }) {
       data={expenses}
       renderItem={renderExpenseItem}
       keyExtractor={(item) => item.id}
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{ paddingBottom: 16 }}
     />
   );
 }

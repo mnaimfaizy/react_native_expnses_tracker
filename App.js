@@ -1,14 +1,14 @@
-import { StatusBar } from "expo-status-bar";
+import { Ionicons } from "@expo/vector-icons";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Ionicons } from "@expo/vector-icons";
+import { StatusBar } from "expo-status-bar";
 
+import IconButton from "./components/UI/IconButton";
+import { GlobalStyles } from "./constants/styles";
+import AllExpenses from "./screens/AllExpenses";
 import ManageExpense from "./screens/ManageExpense";
 import RecentExpenses from "./screens/RecentExpenses";
-import AllExpenses from "./screens/AllExpenses";
-import { GlobalStyles } from "./constants/styles";
-import IconButton from "./components/UI/IconButton";
 import ExpensesContextProvider from "./store/expenses-context";
 
 const Stack = createNativeStackNavigator();
@@ -18,10 +18,22 @@ function ExpensesOverview() {
   return (
     <BottomTabs.Navigator
       screenOptions={({ navigation }) => ({
-        headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
+        headerStyle: { backgroundColor: GlobalStyles.colors.primary800 },
         headerTintColor: "white",
-        tabBarStyle: { backgroundColor: GlobalStyles.colors.primary500 },
+        headerTitleStyle: { fontWeight: "700" },
+        tabBarStyle: {
+          backgroundColor: GlobalStyles.colors.primary800,
+          borderTopColor: GlobalStyles.colors.primary700,
+        },
         tabBarActiveTintColor: GlobalStyles.colors.accent500,
+        tabBarInactiveTintColor: GlobalStyles.colors.primary200,
+        tabBarLabelStyle: {
+          fontSize: 12,
+          fontWeight: "600",
+        },
+        tabBarItemStyle: {
+          paddingVertical: 6,
+        },
         headerRight: ({ tintColor }) => (
           <IconButton
             icon="add"
@@ -68,8 +80,10 @@ export default function App() {
         <NavigationContainer>
           <Stack.Navigator
             screenOptions={{
-              headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
+              headerStyle: { backgroundColor: GlobalStyles.colors.primary800 },
               headerTintColor: "white",
+              headerTitleStyle: { fontWeight: "700" },
+              contentStyle: { backgroundColor: GlobalStyles.colors.primary800 },
             }}
           >
             <Stack.Screen

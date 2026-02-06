@@ -1,5 +1,5 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import { GlobalStyles } from "../../constants/styles";
 import { getFormattedDate } from "../../util/date";
@@ -16,7 +16,8 @@ function ExpenseItem({ id, description, amount, date }) {
   return (
     <Pressable
       onPress={expensePressHandler}
-      style={({ pressed }) => pressed && styles.pressed}
+      android_ripple={{ color: GlobalStyles.colors.primary100 }}
+      style={({ pressed }) => [styles.pressable, pressed && styles.pressed]}
     >
       <View style={styles.expenseItem}>
         <View>
@@ -36,21 +37,28 @@ function ExpenseItem({ id, description, amount, date }) {
 export default ExpenseItem;
 
 const styles = StyleSheet.create({
+  pressable: {
+    borderRadius: 12,
+    overflow: "hidden",
+    marginVertical: 6,
+  },
   pressed: {
-    opacity: 0.75,
+    opacity: 0.9,
   },
   expenseItem: {
-    padding: 12,
-    marginVertical: 8,
+    paddingVertical: 14,
+    paddingHorizontal: 14,
     backgroundColor: GlobalStyles.colors.primary500,
     flexDirection: "row",
     justifyContent: "space-between",
-    borderRadius: 6,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: GlobalStyles.colors.primary400,
     elevation: 3,
     shadowColor: GlobalStyles.colors.gray500,
     shadowRadius: 4,
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 0.4,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
   },
   textBase: {
     color: GlobalStyles.colors.primary50,
@@ -62,15 +70,16 @@ const styles = StyleSheet.create({
   },
   amountContainer: {
     paddingHorizontal: 12,
-    paddingVertical: 4,
+    paddingVertical: 6,
     backgroundColor: "white",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 4,
+    borderRadius: 10,
     minWidth: 80,
   },
   amount: {
     color: GlobalStyles.colors.primary500,
     fontWeight: "bold",
+    fontSize: 16,
   },
 });

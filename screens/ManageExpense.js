@@ -106,12 +106,12 @@ export default ManageExpense;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 24,
+    padding: 16,
     backgroundColor: GlobalStyles.colors.primary800,
   },
   deleteContainer: {
-    marginTop: 16,
-    paddingTop: 8,
+    marginTop: 20,
+    paddingTop: 12,
     borderTopWidth: 2,
     borderTopColor: GlobalStyles.colors.primary200,
     alignItems: "center",
